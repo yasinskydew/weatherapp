@@ -1,7 +1,10 @@
 const request = require('request')
+const convert = require('cyrillic-to-latin')
 
 const geocode = (address, callback) => {
-    const url = 'https://api.mapbox.com/geocoding/v5/mapbox.places/' + address + '.json?access_token=pk.eyJ1IjoidmxhZGltaXI3MjIyMjI3IiwiYSI6ImNqdWkwbHNzZTAybG80M2xsdmdrY3FlbzgifQ.12Ngx7XaututDBBET6TyCg&limit=1'
+
+    let latinAdress = convert(address)
+    const url = 'https://api.mapbox.com/geocoding/v5/mapbox.places/' + latinAdress + '.json?access_token=pk.eyJ1IjoidmxhZGltaXI3MjIyMjI3IiwiYSI6ImNqdWkwbHNzZTAybG80M2xsdmdrY3FlbzgifQ.12Ngx7XaututDBBET6TyCg&limit=1'
 
     request({ url, json: true }, (error, { body }) => {
         if (error) {
